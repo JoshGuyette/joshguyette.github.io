@@ -10,6 +10,7 @@ function onAuthStateChanged(user) {
         // Used for auto-logout.
         pollInactivityTimeout();
     }
+    setState("currentUser", user);
 }
 
 // This is just fixing a firechat issue (for now). The best way to do this is to not load the
