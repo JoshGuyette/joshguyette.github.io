@@ -50,23 +50,6 @@
             // Polls for a change in the currentUser's .emailVerified field.
             pollVerification();
         })();
-
-        //
-        // Init Firechat (not part of fabspa template)
-        //
-        (function () {
-            var user = firebase.auth().currentUser;
-            // Get a Firebase Database ref
-            var chatRef = firebase.database().ref("firechat");
-
-            // Create a Firechat instance
-            var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-
-            // Set the Firechat user
-            chat.setUser(user.uid, getCurrentUserDisplayName(), function (user) {
-                chat.resumeSession();
-            });
-        })();
     </script>
 
     <div class="container-fluid">
