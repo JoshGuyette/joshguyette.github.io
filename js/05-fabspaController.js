@@ -36,6 +36,7 @@ fabspaApp
       //
       $rootScope.config = config;
       $rootScope.navbar = navbar;
+      $rootScope.stateInformation = fabspaStated;
     }
   ])
   .config(function($routeProvider) {
