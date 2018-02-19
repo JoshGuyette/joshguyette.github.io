@@ -1,0 +1,14 @@
+<!-- logout.html -->
+<script type="text/javascript">
+    // Wait for the sign-out to occur then navigate back to welcome.
+    // You could refresh the page on logout by setting config.refreshPageOnLogout to true.
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (config.refreshPageOnLogout)
+            window.location.href = "/";
+        else if (user != null)
+            pageNavigate("dashboard");
+        else
+            pageNavigate("welcome");
+    });
+    firebaseSignOut();
+</script>
