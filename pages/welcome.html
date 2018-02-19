@@ -1,0 +1,164 @@
+<!-- welcome.html -->
+<div class="container-fluid partial-page">
+    <!-- Local scripts, handles button click events -->
+    <script type="text/javascript">
+
+        // Add event listeners
+        function initPage() {
+            document
+                .getElementById("login-button")
+                .addEventListener("click", onLoginClick, false);
+            document
+                .getElementById("sign-up-button")
+                .addEventListener("click", onSignUpClick, false);
+            document
+                .getElementById("password-reset-button")
+                .addEventListener("click", onSendPasswordResetClick, false);
+        }
+
+        // Login-in button click event handler -->
+        function onLoginClick() {
+            var email = document.getElementById("login-email").value;
+            var password = document.getElementById("login-password").value;
+            if (email.length < 4) {
+                showDialog("Login Error", "Please enter an email address.", "OK");
+                return;
+            }
+            if (password.length < 4) {
+                showDialog("Login Error", "Please enter a password.", "OK");
+                return;
+            }
+
+            // Sign in with email and pass.
+            if (emailSignIn(email, password)) {
+                // This hides the welcome screen's home-inner div, this
+                // makes for a cleaner looking sign-up
+                $(".home-inner").addClass("div-collapsed");
+            }
+        }
+
+        // Sign-up button click event handler
+        function onSignUpClick() {
+            var email = document.getElementById("sign-up-email").value;
+            var password1 = document.getElementById("sign-up-password1").value;
+            var password2 = document.getElementById("sign-up-password2").value;
+
+            if (email.length < 4) {
+                showDialog("Sign-up Error", "Please enter an email address.", "OK");
+                return;
+            }
+            if (password1.length < 4) {
+                showDialog("Sign-up Error", "Please enter a password.", "OK");
+                return;
+            }
+            if (password1 != password2) {
+                showDialog("Sign-up Error", "Passwords don't match", "OK");
+                return;
+            }
+
+            // Sign in with email and pass.
+            if (emailSignUp(email, password1)) {
+                // This hides the welcome screen's home-inner div, this
+                // makes for a cleaner looking sign-up
+                $(".home-inner").addClass("div-collapsed");;
+            }
+        }
+
+        // Password Reset click event handler
+        function onSendPasswordResetClick() {
+            var email = document.getElementById("forgot-password-email").value;
+            emailPasswordReset(email);
+        }
+
+        initPage();
+    </script>
+
+    <div id="home-overlay">
+        <div class="home-inner">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 d-none d-lg-block">
+                        <!-- Jumbotron -->
+                        <div class="jumbotron">
+                            <!-- Title mesage -->
+                            <h1 class="display-4">Welcome to the fabspa-js template!</h1>
+                            <!-- Body Message -->
+                            <p class="lead">
+                                This is an implementation of the fabspa-js template demonstrating
+                                <a id="powered-by-firebase" href="https://firebase.google.com/?utm_source=firechat" target="_blank">
+                                    firechat
+                                </a> for some functionality.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 tabs-wrapper">
+                        <!-- Nav tabs -->
+                        <div class="tabs-wrapper">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <!-- Login -->
+                                <li class="nav-item">
+                                    <a id="welcome-login" class="nav-link active show" data-toggle="tab" href="#login" role="tab">Login</a>
+                                </li>
+                                <!-- Sign-up -->
+                                <li class="nav-item">
+                                    <a id="welcome-sign-up" class="nav-link" data-toggle="tab" href="#sign-up" role="tab">Sign-up</a>
+                                </li>
+                                <!-- Password Reset -->
+                                <li class="nav-item">
+                                    <a id="welcome-password-reset" class="nav-link" data-toggle="tab" href="#forgot-password" role="tab">Forgot Password</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Login-in tab -->
+                        <div class="tab-content card bg-primary text-center">
+                            <div class="tab-pane fade in show active" id="login" role="tabpanel">
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <input id="login-email" type="email" class="form-control" placeholder="E-Mail">
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="login-password" type="password" class="form-control" placeholder="Password">
+                                        </div>
+                                        <input id="login-button" type="submit" class="btn btn-outline-light btn-block" value="Login">
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Sign-up Tab -->
+                            <div class="tab-pane fade" id="sign-up" role="tabpanel">
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <input id="sign-up-email" type="email" class="form-control" placeholder="E-Mail">
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="sign-up-password1" type="password" class="form-control" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="sign-up-password2" type="password" class="form-control" placeholder="Retype Password">
+                                        </div>
+                                        <input id="sign-up-button" type="submit" class="btn btn-outline-light btn-block" value="Sign-up">
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Password Reset Tab -->
+                            <div class="tab-pane fade" id="forgot-password" role="tabpanel">
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <input id="forgot-password-email" type="email" class="form-control" placeholder="E-Mail">
+                                        </div>
+                                        <input id="password-reset-button" type="submit" class="btn btn-outline-light btn-block" value="Send Password Reset">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

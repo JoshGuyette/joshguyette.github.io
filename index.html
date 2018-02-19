@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="fabspaApp">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ config.appName }}</title>
+
+    <!-- Core Scripts: jquery, angular, popper, bootstrap, firebase -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+
+    <!-- Optional: additional global cdn's -->
+    <!-- Firechat (REMOVE FOR TEMPLATE) -->
+    <script src="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.js"></script>
+
+    <!-- Local scripts -->
+    <script src="js/01-config.js"></script>
+    <script src="js/02-main.js"></script>
+    <script src="js/03-navbar.js"></script>
+    <script src="js/04-firebase.js"></script>
+    <script src="js/05-fabspaController.js"></script>
+    <!-- Dynamically loaded scripts specified in config.javaScripts -->
+    <script ng-repeat="script in javaScripts" ng-src="{{ script.href }}"></script>
+    <!-- Handles the document onReady event -->
+    <script src="js/99-onReady.js"></script>
+
+    <!-- Load styles from config -->
+    <link rel="stylesheet" ng-repeat="css in globalCssLinks" ng-href="{{ css.href }}" ng-integrity="{{ css.integrity }}" ng-crossorigin="{{ css.crossorigin }}" />
+</head>
+
+<body id="body" ng-controller="fabspaController">
+    <div class="container-fluid dark-overlay" id="primary-container">
+        <!--Header -->
+        <header id="app-header" ng-include="'/pages/site.html/header.html'"></header>
+        <!-- Section / Partial Page View -->
+        <section id="app-section" class="page-view">
+            <ng-view class="container-fluid"></ng-view>
+        </section>
+        <!-- Footer -->
+        <footer id="app-footer" class="bg-dark fixed-bottom" ng-include="'/pages/site.html/footer.html'"></footer>
+        <!-- Modal Dialog -->
+        <div ng-include="'/pages/site.html/modal.html'"></div>
+    </div>
+</body>
+
+</html>

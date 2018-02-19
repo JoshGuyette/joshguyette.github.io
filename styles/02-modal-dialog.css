@@ -1,0 +1,51 @@
+/* CSS required for the modal dialogs */
+
+.modal {
+    padding-top: 15%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.model-dialog {
+    border-color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 0);
+    display: inline-block;
+    width: auto;
+}
+
+.modal-content {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 1);
+    background-color: rgba(68, 110, 155, 0.94);
+    
+}
+
+.modal-header {
+    border-width: 0px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 5px; 
+}
+
+.modal-body {
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+}
+
+.modal-footer {
+    border-top-width: 0px;
+}
+
+.close:focus {
+    outline: none !important;
+}
+
+#modal-dialog-title {
+    margin: 2px 2px 2px 2px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#show-dialog {
+    visibility: hidden;
+}
