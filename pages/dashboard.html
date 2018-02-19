@@ -54,16 +54,16 @@
         //
         // Init Firechat (not part of fabspa template)
         //
-        (function() {
+        (function () {
             var user = firebase.auth().currentUser;
             // Get a Firebase Database ref
             var chatRef = firebase.database().ref("firechat");
 
             // Create a Firechat instance
             var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-            
+
             // Set the Firechat user
-            chat.setUser(user.uid, getCurrentUserDisplayName(), function(user) {
+            chat.setUser(user.uid, getCurrentUserDisplayName(), function (user) {
                 chat.resumeSession();
             });
         })();
@@ -86,20 +86,10 @@
                     Welcome to the Dashboard.
                 </div>
                 <div class="col-lg-4 pt-3 pl-5">
-                    <div id="chatbox" class="text-center">
-                        <!-- This div is the target for wrapping firechat -->
-                        <div id="firechat-wrapper" class="fluid-container">
-
-                        </div>
-                        <!-- Current user name or e-mail -->
-                        <div id="user-info text-dark">
-                            Logged in as
-                            <span>{{ stateInformation.currentUser.email }}</span>.
-                        </div>
-                        <!-- Give credit to the developers of firechat -->
-                        <a id="powered-by-firebase" href="https://firebase.google.com/?utm_source=firechat" target="_blank">
-                            <img src="/img/firebase-logo.png" />
-                        </a>
+                    <!-- Current user name or e-mail -->
+                    <div id="user-info text-dark">
+                        Logged in as
+                        <span>{{ stateInformation.currentUser.email }}</span>.
                     </div>
                 </div>
             </div>

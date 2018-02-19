@@ -51,10 +51,6 @@ var config = {
         "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     },
     {
-      // Firechat (REMOVE ME!!! For test site only)
-      href: "https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.css"
-    },
-    {
       href: "/styles/02-modal-dialog.css"
     },
     {
