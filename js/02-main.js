@@ -5,6 +5,13 @@
   firebase.initializeApp(config.firebaseInit);
 })();
 
+// setState is a way to save runtime cross-page values
+// If I setState("logged-in", true), then access in html like "{{ stateInformation.name }}"
+var fabspaStated = { };
+function setState(name, value) {
+  fabspaStated[name] = value;
+}
+
 // Sleep function using promises
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
