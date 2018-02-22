@@ -5,11 +5,11 @@
 // This variable is bound to the $rootScope 
 var config = {
   // Used for the navbar title
-  appName: "fabspa-js Template",
+  appName: "Josh Guyette's Professional Profile",
   // Reference
   appVersion: "Beta-RC1",
   // Used for the window title
-  title: "fabspa - Developed by Josh Guyette",
+  title: "Joshua Guyette's Professional Profile",
   // Number of seconds of idle time before a user logs off
   inactivityLogout: 300,
   // Refresh the site when a user logs out, cleaning out any private information save in javascript variables.
@@ -86,26 +86,32 @@ var navbar = {
       url: "pages/dashboard.html",
       types: ["user-page", "home", "verify-email"]
     },
-    //{
-    //  name: "Some User Page",
-    //  path: "page",
-    //  url: "pages/page.html",
-    //  // email-verified-required means this page is only accessible if the user has verified their e-mail
-    //  types: [ "user-page", "email-verify-required" ]
-    //},
+    {
+      name: "About Me",
+      path: "about",
+      url: "pages/about.html",
+      // This page is always available
+      types: ["site-page"]
+    },
+    {
+      name: "Portfolio",
+      path: "portfolio",
+      url: "pages/portfolio.html",
+      // This page is always available
+      types: ["site-page"]
+    },    {
+      name: "Resume",
+      path: "resume",
+      url: "pages/resume.html",
+      // email-verified-required means this page is only accessible if the user has verified their e-mail
+      types: [ "user-page", "email-verify-required" ]
+    },
     {
       name: "Settings",
       path: "settings",
       url: "pages/settings.html",
       // User settings page, "settings" can be used with "site-page" too
       types: ["user-page", "settings"]
-    },
-    {
-      name: "About",
-      path: "about",
-      url: "pages/about.html",
-      // This page is always available
-      types: ["site-page"]
     },
     {
       name: "Logout",
