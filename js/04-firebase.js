@@ -11,6 +11,7 @@ function onAuthStateChanged(user) {
         pollInactivityTimeout();
     }
     setState("currentUser", user);
+    setState("idleTime", 0);
 }
 
 // This is just fixing a firechat issue (for now). The best way to do this is to not load the
@@ -59,9 +60,9 @@ async function pollInactivityTimeout() {
     while (user != null)
     {
         await sleep(1000);
-        idleTime = idleTime + 1;
-        if (idleTime > config.inactivityLogout) {
-          firebaseSignOut();
+        setState("idleTime", getState("idleTime") + 1);
+        if (getState("idleTime") > config.inactivityLogout) {
+          pageNavigate("logout");
           break;
         }
         user = firebase.auth().currentUser;

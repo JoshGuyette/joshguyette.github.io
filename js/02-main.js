@@ -6,10 +6,13 @@
 })();
 
 // setState is a way to save runtime cross-page values
-// If I setState("logged-in", true), then access in html like "{{ stateInformation.name }}"
+// If I setState("temp", true), then access in html like "{{ stateInformation.temp }}"
 var fabspaStated = { };
 function setState(name, value) {
   fabspaStated[name] = value;
+}
+function getState(name) {
+  return fabspaStated[name];
 }
 
 // Sleep function using promises
@@ -31,4 +34,4 @@ function closeDialog() {
 }
 
 // Finished
-console.log("Finished loading: model-dialog.js ");
+console.log("Finished loading: main.js ");
