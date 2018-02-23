@@ -37,6 +37,19 @@ function setNavElementBold(pagePath) {
   }
 }
 
+function getPageUrl(pagePath)
+{
+  for (var page in navbar.elements)
+  {
+    var thisPage = navbar.elements[page];
+    var path = thisPage.path;
+    if (path == pagePath) {
+      return thisPage.url;
+    }
+  }
+  return "";
+}
+
 // Function to navigate to a different content-page
 function pageNavigate(pageName) {
   var id = "#href-" + pageName;

@@ -45,12 +45,12 @@ fabspaApp
     // Dynamic Routing
     $routeProvider
       .when("/", {
-        templateUrl: "pages/loading.html",
+        templateUrl: "pages/site.html/loading.html",
         controller: "fabspaController"
       })
       .when("/:name*", {
         templateUrl: function (urlattr) {
-          return "/pages/" + urlattr.name + ".html";
+          return getPageUrl(urlattr.name);
         },
         controller: "fabspaController"
       })

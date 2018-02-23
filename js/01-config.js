@@ -16,7 +16,7 @@ var config = {
     title: "Joshua Guyette's Professional Profile"
   },
   // Number of seconds of idle time before a user logs off
-  inactivityLogout: 15,
+  inactivityLogout: 300,
   // Refresh the site when a user logs out, cleaning out any private information save in javascript variables.
   refreshPageOnLogout: true,
   // This is used to make the connect to firebase
@@ -78,7 +78,7 @@ var navbar = {
     {
       name: "Logout",
       path: "logout",
-      url: "pages/logout.html",
+      url: "pages/site.html/logout.html",
       // This pseudo page is available if logged in
       types: ["logout"]
     }
