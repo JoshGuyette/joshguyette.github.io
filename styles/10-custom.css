@@ -45,7 +45,7 @@ h1,h2,h3,h4,h5 {
     border-color: rgba(255, 255, 255, 1);
     background-color: rgba(0, 0, 0, 0);
     display: inline-block;
-    width: auto;
+    max-width: 100%;
 }
 .card-header, .card-footer {
     opacity: 1
