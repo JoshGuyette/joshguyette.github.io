@@ -50,6 +50,25 @@
             // Polls for a change in the currentUser's .emailVerified field.
             pollVerification();
         })();
+
+        var quotes = {
+            "new": function (jQuery) {
+                // Pick a random quote
+                var index = Math.floor(Math.random() * 24);  // Get rid of the constant
+
+                var quote = this["q" + index];  // Pull this from firebase "modules/quote-engine/q" + index
+
+                $(jQuery).html((quote.quote + " –" + quote.author).replace("–", " –<i>" + "<//i>"));
+            },
+            "tweet": function (jQuery) {
+                var w = 500;
+                var h = 300;
+                var left = Number((screen.width / 2) - (w / 2));
+                var top = Number((screen.height / 2) - (h / 2));
+                window.open('https://twitter.com/intent/tweet?text=' + encodeURI($(jQuery).text()), "Tweet", "'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, height=" + h + ",width=" + w + ",left=" + left + ",top=" + top);
+            }
+        };
+
     </script>
 
     <div class="container-fluid">
