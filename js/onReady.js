@@ -22,9 +22,8 @@ $(document).ready(function() {
 
   // Init inactivity logout
   // If either of these two events occurs, it zeroes the idleTime
-  $(this).mousemove(e => setState("idleTime", 0));
-  $(this).keypress(e => setState("idleTime", 0));
-  setState("idleTime", 0);
+  $(this).mousemove(e => state.set("idleTime",  0));
+  $(this).keypress(e => state.set("idleTime", 0));
 
   // Custom onReady
   onReady();

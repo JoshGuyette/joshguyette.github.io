@@ -1,12 +1,12 @@
-<!DOCTYPE html> <!-- Update 10 -->
+<!DOCTYPE html>
 <html ng-app="fabspaApp">
 
 <head>
-    <meta charset="utf-8" /8
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config.index.title }}</title>
+    <title>{{ indexPage.title }}</title>
 
-    <!-- Core Scripts: jquery, angular, popper, bootstrap, firebase -->
+    <!-- CDN's: jquery, angular, popper, bootstrap, firebase -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-route.js"></script>
@@ -14,16 +14,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 
-    <!-- Local scripts -->
-    <script src="js/01-config.js"></script>
-    <script src="js/02-main.js"></script>
-    <script src="js/03-navbar.js"></script>
-    <script src="js/04-firebase.js"></script>
-    <script src="js/05-fabspaController.js"></script>
+    <!-- fabspa-js scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/site.js/main.js"></script>
+    <script src="js/site.js/navbar.js"></script>
+    <script src="js/site.js/firebase.js"></script>
+    <script src="js/site.js/fabspaController.js"></script>
     <!-- Dynamically loaded scripts specified in config.javaScripts -->
     <script ng-repeat="script in javaScripts" ng-src="{{ script.href }}"></script>
     <!-- Handles the document onReady event -->
-    <script src="js/99-onReady.js"></script>
+    <script src="js/onReady.js"></script>
 
     <!-- Load styles from config -->
     <link rel="stylesheet" ng-repeat="css in globalCssLinks" ng-href="{{ css.href }}" ng-integrity="{{ css.integrity }}" ng-crossorigin="{{ css.crossorigin }}" />

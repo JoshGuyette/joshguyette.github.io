@@ -10,7 +10,7 @@ fabspaApp
   .controller("fabspaController", [
     "$rootScope",
     "$scope",
-    function ($rootScope, $scope) {
+    function($rootScope, $scope) {
       //
       // Set $scope (bindings for partial pages)
       //
@@ -19,7 +19,7 @@ fabspaApp
         : "Guest";
 
       // Tells a nav link if it's hidden or not.
-      $scope.isValid = function (path) {
+      $scope.isValid = function(path) {
         var user = firebase.auth().currentUser;
         for (var page in $rootScope.navbar.elements) {
           var p = $rootScope.navbar.elements[page].path;
@@ -36,12 +36,18 @@ fabspaApp
       //
       $rootScope.config = config;
       $rootScope.navbar = navbar;
-      $rootScope.stateInformation = fabspaStated;
+      $rootScope.indexPage = indexPage;
+      $rootScope.state = state;
       $rootScope.globalCssLinks = indexPage.cssSheets;
       $rootScope.javaScripts = indexPage.javaScripts;
+
+      //
+      // Push some global functions on to the scope, so pages have access to them
+      //
+      loadScopeFunctions($rootScope);
     }
   ])
-  .config(function ($routeProvider) {
+  .config(function($routeProvider) {
     // Dynamic Routing
     $routeProvider
       .when("/", {
@@ -49,7 +55,7 @@ fabspaApp
         controller: "fabspaController"
       })
       .when("/:name*", {
-        templateUrl: function (urlattr) {
+        templateUrl: function(urlattr) {
           return getPageUrl(urlattr.name);
         },
         controller: "fabspaController"
@@ -61,24 +67,25 @@ fabspaApp
   .run([
     "$rootScope",
     "$location",
-    function ($rootScope, $location) {
-
+    "$route",
+    function($rootScope, $location, $route) {
       // register listener to watch route changes
-      $rootScope.$on("$routeChangeStart", function (event, next, current) {
+      $rootScope.$on("$routeChangeStart", function(event, next, current) {
         var user = firebase.auth().currentUser;
         var isLoggedIn = user != null;
         var currentPage = current ? current.params.name : null;
         var nextPage = next ? next.params.name : null;
-
+        
         // Site reloads
-        if (next && (typeof current == "undefined") && (typeof next.templateUrl == "undefined")) {
+        if (next && (typeof current == "undefined") && (typeof next.templateUrl == "undefined"))
+        {
           $location.path("/");
           return;
         }
         if (next && next.templateUrl == "pages/loading.html") {
           return;
         }
-
+        
         // Just ignore these
         if (!next || !current) {
           //console.log("Note: Unhandled $routeChangeStart detected.");
@@ -111,17 +118,30 @@ fabspaApp
         if ($("#navbar-content").hasClass("show")) $("#navbar-toggle").click();
       });
 
-      $rootScope.$on("$routeChangeSuccess", function (event, next, current) {
+      $rootScope.$on("$routeChangeSuccess", function(event, next, current) {
         var currentPage = current ? current.params.name : null;
         var nextPage = next ? next.params.name : null;
         setNavElementBold(nextPage);
+        $("title").html($rootScope.indexPage.titlePrefix + titleCase(nextPage) + $rootScope.indexPage.titleSuffix);
       });
 
-      $rootScope.$on("$routeChangeError", function (event, next, current) {
+      $rootScope.$on("$routeChangeError", function(event, next, current) {
         console.log("$routeChangeError");
       });
     }
   ]);
+
+// Not used, but does it work (like pageNaviagte but an angular approach)?
+function loadPageName(pageName) {
+  fabspaApp.run([
+    "$rootScope",
+    "$location",
+    function($rootScope, $location) {
+      // register listener to watch route changes
+      $location.url("#!" + pageName);
+    }
+  ]);
+}
 
 // Finished
 console.log("Finished loading: fabspaController.js ");

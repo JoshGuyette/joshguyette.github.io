@@ -5,16 +5,9 @@
 // This variable is bound to the $rootScope 
 var config = {
   // Used for the navbar title
-  appName: "Josh Guyette",
+  appName: "Joshua Guyette",
   // Reference
-  appVersion: "Beta-RC1",
-  // Page specifics
-  index: {
-    title: "Joshua Guyette's Professional Profile"
-  },
-  welcome: {
-    title: "Joshua Guyette's Professional Profile"
-  },
+  appVersion: "Beta 1",
   // Number of seconds of idle time before a user logs off
   inactivityLogout: 300,
   // Refresh the site when a user logs out, cleaning out any private information save in javascript variables.
@@ -86,6 +79,9 @@ var navbar = {
 };
 
 var indexPage = {
+  // Used for the window title
+  titlePrefix: "Professional Profile - ",
+  titleSuffix: " - Josh Guyette",
   // Additional globally scoped javascripts should be listed here
   javaScripts: [
     {
@@ -114,19 +110,31 @@ var indexPage = {
         "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     },
     {
-      href: "/styles/02-modal-dialog.css"
+      href: "/styles/site.css/modal-dialog.css"
     },
     {
-      href: "/styles/03-navbar.css"
+      href: "/styles/site.css/navbar.css"
     },
     {
-      href: "/styles/10-custom.css"
+      href: "/styles/custom.css"
     },
     {
-      href: "/styles/99-final.css"
+      href: "/styles/site.css/final.css" 
     }
   ]
 };
+
+// This is called in the angularjs controller to make some functions
+// available to the pages... Bindings {{ isLoggedIn() }} or loops.
+// This is called inside the controller, must be a function since none
+// of the reference functions are declared yet.
+function loadScopeFunctions($rootScope)
+{
+  $rootScope["showDialog"] = showDialog;
+  $rootScope.closeDialog = closeDialog;
+  $rootScope.pageNavigate = pageNavigate;
+  $rootScope.isLoggedIn = isLoggedIn;
+}
 
 // Finished
 console.log("Finished loading: config.js ");

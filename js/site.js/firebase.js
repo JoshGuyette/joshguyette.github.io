@@ -1,4 +1,4 @@
-// This is just support for firebase, firebase is initialized at the end of config.js
+// This is just support for firebase, firebase is initialized at the beginning of main.js
 
 // onAuthStateChanged event handler, handler added at the end of this script
 function onAuthStateChanged(user) {
@@ -10,17 +10,8 @@ function onAuthStateChanged(user) {
         // Used for auto-logout.
         pollInactivityTimeout();
     }
-    setState("currentUser", user);
-    setState("idleTime", 0);
-}
-
-// This is just fixing a firechat issue (for now). The best way to do this is to not load the
-// firechat window until displayName is set.
-function getCurrentUserDisplayName()
-{
-    var currentUser = firebase.auth().currentUser;
-    if (currentUser == null) { return null };
-    return (currentUser.displayName ? currentUser.displayName : "Anonymous");
+    state.set("currentUser", user);
+    state.set("idleTime", 0);
 }
 
 // Returns true if the current user is logged in
@@ -60,8 +51,8 @@ async function pollInactivityTimeout() {
     while (user != null)
     {
         await sleep(1000);
-        setState("idleTime", getState("idleTime") + 1);
-        if (getState("idleTime") > config.inactivityLogout) {
+        state.set("idleTime", state.get("idleTime") + 1);
+        if (state.get("idleTime") > config.inactivityLogout) {
           pageNavigate("logout");
           break;
         }

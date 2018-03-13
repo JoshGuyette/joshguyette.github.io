@@ -37,6 +37,7 @@ function setNavElementBold(pagePath) {
   }
 }
 
+// Used for dynamic routing
 function getPageUrl(pagePath)
 {
   for (var page in navbar.elements)
