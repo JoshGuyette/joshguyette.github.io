@@ -37,6 +37,120 @@
             refreshLayout();
         }
 
+        var quotes = {
+            "new": function (jQuery) {
+                // Pick a random quote
+                var index = Math.floor(Math.random() * 24);  // Get rid of the constant
+
+                var quote = this["q" + index];  // Pull this from firebase "modules/quote-engine/q" + index
+
+                $(jQuery).html(('"' + quote.quote + '"' + " –" + quote.author).replace("–", " –<i>" + "<//i>"));
+            },
+            "tweet": function (jQuery) {
+                var w = 500;
+                var h = 300;
+                var left = Number((screen.width / 2) - (w / 2));
+                var top = Number((screen.height / 2) - (h / 2));
+                window.open('https://twitter.com/intent/tweet?text=' + encodeURI($(jQuery).text()), "Tweet", "'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, height=" + h + ",width=" + w + ",left=" + left + ",top=" + top);
+            },
+            "q0": {
+                quote: "Life is about making an impact, not making an income.",
+                author: "Kevin Kruse"
+            },
+            "q1": {
+                quote: "Whatever the mind of man can conceive and believe, it can achieve.",
+                author: "Napoleon Hill"
+            },
+            "q2": {
+                quote: "Strive not to be a success, but rather to be of value.",
+                author: "Albert Einstein"
+            },
+            "q3": {
+                quote: "Two roads diverged in a woods, and I—I took the one less traveled by, And that has made all the difference.",
+                author: "Robert Frost"
+            },
+            "q4": {
+                quote: "I attribute my success to this: I never gave or took any excuse.",
+                author: "Florence Nightingale"
+            },
+            "q5": {
+                quote: "I've missed more than 9000 shots in my career. I've lost almost 300 games. 26 times I've been trusted to take the game winning shot and missed. I've failed over and over and over again in my life. And that is why I succeed.",
+                author: "Michael Jordan"
+            },
+            "q6": {
+                quote: "The most difficult thing is the decision to act, the rest is merely tenacity.",
+                author: "Amelia Earhart"
+            },
+            "q7": {
+                quote: "Every strike brings me closer to the next home run.",
+                author: "Babe Ruth"
+            },
+            "q8": {
+                quote: "Definiteness of purpose is the starting point of all achievement.",
+                author: "W. Clement Stone"
+            },
+            "q9": {
+                quote: "Life isn't about getting and having, it's about giving and being.",
+                author: "Kevin Kruse"
+            },
+            "q10": {
+                quote: "Life is what happens to you while you’re busy making other plans.",
+                author: "John Lennon"
+            },
+            "q11": {
+                quote: "We become what we think about.",
+                author: "Earl Nightingale"
+            },
+            "q12": {
+                quote: "Twenty years from now you will be more disappointed by the things that you didn’t do than by the ones you did do, so throw off the bowlines, sail away from safe harbor, catch the trade winds in your sails.  Explore, Dream, Discover.",
+                author: "Mark Twain"
+            },
+            "q13": {
+                quote: "Life is 10% what happens to me and 90% of how I react to it.",
+                author: "Charles Swindoll"
+            },
+            "q14": {
+                quote: "The most common way people give up their power is by thinking they don’t have any.",
+                author: "Alice Walker"
+            },
+            "q15": {
+                quote: "The mind is everything. What you think you become.",
+                author: "Buddha"
+            },
+            "q16": {
+                quote: "The best time to plant a tree was 20 years ago. The second best time is now.",
+                author: "Chinese Proverb"
+            },
+            "q17": {
+                quote: "An unexamined life is not worth living.",
+                author: "Socrates"
+            },
+            "q18": {
+                quote: "Eighty percent of success is showing up.",
+                author: "Woody Allen"
+            },
+            "q19": {
+                quote: "Your time is limited, so don’t waste it living someone else’s life.",
+                author: "Steve Jobs"
+            },
+            "q20": {
+                quote: "Winning isn’t everything, but wanting to win is.",
+                author: "Vince Lombardi"
+            },
+            "q21": {
+                quote: "I am not a product of my circumstances. I am a product of my decisions.",
+                author: "Stephen Covey"
+            },
+            "q22": {
+                quote: "Every child is an artist.  The problem is how to remain an artist once he grows up.",
+                author: "Pablo Picasso"
+            },
+            "q23": {
+                quote: "You can never cross the ocean until you have the courage to lose sight of the shore.",
+                author: "Christopher Columbus"
+            },
+        };
+
         //
         // Init Page
         //
@@ -49,25 +163,9 @@
 
             // Polls for a change in the currentUser's .emailVerified field.
             pollVerification();
+
+            quotes.new("#random-quote")
         })();
-
-        var quotes = {
-            "new": function (jQuery) {
-                // Pick a random quote
-                var index = Math.floor(Math.random() * 24);  // Get rid of the constant
-
-                var quote = this["q" + index];  // Pull this from firebase "modules/quote-engine/q" + index
-
-                $(jQuery).html((quote.quote + " –" + quote.author).replace("–", " –<i>" + "<//i>"));
-            },
-            "tweet": function (jQuery) {
-                var w = 500;
-                var h = 300;
-                var left = Number((screen.width / 2) - (w / 2));
-                var top = Number((screen.height / 2) - (h / 2));
-                window.open('https://twitter.com/intent/tweet?text=' + encodeURI($(jQuery).text()), "Tweet", "'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, height=" + h + ",width=" + w + ",left=" + left + ",top=" + top);
-            }
-        };
 
     </script>
 
@@ -86,12 +184,16 @@
             <div class="row">
                 <div class="col-lg-8 d-none d-lg-block">
                     Welcome to the Dashboard.
+                    <br/>
+                    <br/>
+                    <span id="random-quote"></span>
                 </div>
                 <div class="col-lg-4 pt-3 pl-5">
                     <!-- Current user name or e-mail -->
                     <div id="user-info text-dark">
                         Logged in as
-                        <span>{{ stateInformation.currentUser.email }}</span>.
+                        <span>{{ state.currentUser.email }}</span>. <br/>
+                        Your IP: <span id="ip-address">{{ state.location.ip }}</span>
                     </div>
                 </div>
             </div>

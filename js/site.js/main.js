@@ -1,5 +1,5 @@
 // Firebase loader, initialize firebase right away!!
-(function() {
+(function () {
   // Initialize firbase
   firebase.initializeApp(config.firebaseInit);
 })();
@@ -25,9 +25,9 @@ function sleep(ms) {
 // This function capitalizes the first character of each word in a string
 // Credit: https://stackoverflow.com/questions/5086390/jquery-title-case
 function titleCase(str) {
-  return str.replace(/(?:^|\s)\w/g, function(match) {
+  return (str ? str.replace(/(?:^|\s)\w/g, function (match) {
     return match.toUpperCase();
-  });
+  }) : null);
 }
 
 // function to display the modal dialog
