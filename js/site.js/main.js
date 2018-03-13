@@ -17,6 +17,34 @@ var state = {
   }
 };
 
+// A vital piece of routing security, this function determines if a user has
+// access to a page, based on the page-types lised in the page's navbar.elements entry
+//
+// Args: The currentUser and the .types for the page in question
+function isPageValid(user, types)
+{
+  var isLogout = (types.indexOf("logout") > -1);
+  var isHome = (types.indexOf("home") > -1);
+  var isAuthPage = (types.indexOf("authentication") > -1);
+  var isSite = (types.indexOf("site-page") > -1);
+  var isUser = (types.indexOf("user-page") > -1);
+  var isProtected = (types.indexOf("email-verify-required") > -1);
+
+  var hasAuthenticated = (user != null);
+  var hasVerifiedEmail = (user && user.emailVerified);
+  
+  // A list of rules under which this function return true
+  return (isSite && !isAuthPage) ||
+         (isSite && isAuthPage && !hasAuthenticated) ||
+         (isUser && !isProtected && hasAuthenticated) ||
+         (isUser && isProtected && hasVerifiedEmail) ||
+         (isLogout && hasAuthenticated);
+}
+
+Math.roundDecimal = function (num, places) {
+  return Number(Math.round(num + 'e' + places) + 'e-' + places);
+};
+
 // Sleep function using promises
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
