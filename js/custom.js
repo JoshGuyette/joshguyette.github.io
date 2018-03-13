@@ -3,6 +3,7 @@ function updateLocation(data) {
     state["location"] = data;
     console.log(JSON.stringify(state["location"], null, 2));
     // Fixes data binding issue (Page reloading the dashboard)
+    $("#current-user").html(state.currentUser.email);
     $("#ip-address").html(state["location"].ip);
     $("#local-ip-address").html(state["location"].local_ip);
     $("#city").html(state["location"].city);
