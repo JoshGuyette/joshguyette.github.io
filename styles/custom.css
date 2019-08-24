@@ -81,3 +81,8 @@ body {
 .card {
     margin-top: 0px !important;
 }
+
+#primary-div {
+    margin: 0px 0px 0px 0px !important;
+    padding: 0px 0px 0px 0px !important;
+}
