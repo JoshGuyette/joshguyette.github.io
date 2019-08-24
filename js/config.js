@@ -5,7 +5,7 @@
 // This variable is bound to the $rootScope 
 var config = {
   // Used for the navbar title
-  appName: "Joshua Guyette",
+  appName: "LockPro",
   // Reference
   appVersion: "Beta 1",
   // Number of seconds of idle time before a user logs off
@@ -28,11 +28,11 @@ var config = {
 var navbar = {
   elements: [
     {
-      name: "Welcome",
-      path: "welcome",
-      url: "pages/welcome.html",
+      name: "Home",
+      path: "home",
+      url: "pages/home.html",
       // This is the site's home page and this page provides authentication
-      types: ["site-page", "home", "authentication"]
+      types: ["site-page", "home"]
     },
     {
       // This is the user's home page and is also used to verify e-mail addresses
@@ -42,24 +42,11 @@ var navbar = {
       types: ["user-page", "home", "verify-email"]
     },
     {
-      name: "About Me",
-      path: "about",
-      url: "pages/about.html",
+      name: "Contacts",
+      path: "contacts",
+      url: "pages/contacts.html",
       // This page is always available
       types: ["site-page"]
-    },
-    {
-      name: "Portfolio",
-      path: "portfolio",
-      url: "pages/portfolio.html",
-      // This page is always available
-      types: ["site-page"]
-    },    {
-      name: "Resume",
-      path: "resume",
-      url: "pages/resume.html",
-      // email-verified-required means this page is only accessible if the user has verified their e-mail
-      types: [ "user-page", "email-verify-required" ]
     },
     {
       name: "Settings",
@@ -67,6 +54,13 @@ var navbar = {
       url: "pages/settings.html",
       // User settings page, "settings" can be used with "site-page" too
       types: ["user-page", "settings"]
+    },
+    {
+      name: "Login",
+      path: "login",
+      url: "pages/login.html",
+      // This page is always available
+      types: ["site-page", "authentication"]
     },
     {
       name: "Logout",

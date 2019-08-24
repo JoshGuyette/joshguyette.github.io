@@ -183,23 +183,33 @@
         </div>
         <!-- This is the section that is displayed if the user has verified their e-mail -->
         <div id="dashboard-content" class="div-collapse page-view">
-            <div class="row">
-                <div class="col-lg-8 d-none d-lg-block">
-                    Welcome to the Dashboard.
-                    <br/>
-                    <br/>
-                    <span id="random-quote"></span>
+            <div id="content-contacts" class="card bg-dark text-center content-info">
+                <div class="border border-secondary card bg-dark text-center content-info mt-2 p-1 h3">
+                    Dashboard
                 </div>
-                <div class="col-lg-4 pt-3 pl-5">
-                    <!-- Current user name or e-mail -->
-                    <div id="user-info text-dark">
-                        Logged in as <span id="current-user">{{ state.currentUser.email }}</span>. <br/>
-                        Your IP: <span id="ip-address">{{ state.location.ip }}</span> <br/>
-                        Your Location: <span id="city">{{ state.location.city }}</span>, <span id="state">{{ state.location.region.name }}</span> <br/>
-                        Weather: <span id="weather">{{ state.location.weather.conditions[0].main }}</span> <br/>
-                    </div>
+                <div class="border border-secondary card bg-dark">
+                    <p class="content-info-item">
+                        <div class="row">
+                            <div class="col-lg-8 d-none d-lg-block">
+                                Welcome to the Dashboard.
+                                <br/>
+                                <br/>
+                                <span id="random-quote"></span>
+                            </div>
+                            <div class="col-lg-4 pt-3 pl-5 text-left">
+                                <!-- Current user name or e-mail -->
+                                <div id="user-info text-dark">
+                                    Logged in as <span id="current-user">{{ state.currentUser.email }}</span>. <br/>
+                                    Your IP: <span id="ip-address">{{ state.location.ip }}</span> <br/>
+                                    Your Location: <span id="city">{{ state.location.city }}</span>, <span id="state">{{ state.location.region.name }}</span> <br/>
+                                    Weather: <span id="weather">{{ state.location.weather.conditions[0].main }}</span> <br/>
+                                </div>
+                            </div>
+                        </div>        
+                    </p>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
