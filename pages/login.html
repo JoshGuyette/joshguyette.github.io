@@ -31,9 +31,8 @@
 
             // Sign in with email and pass.
             if (emailSignIn(email, password)) {
-                // This hides the welcome screen's home-inner div, this
-                // makes for a cleaner looking sign-up
-                $(".home-inner").addClass("div-collapsed");
+                // This makes for a cleaner looking sign-up
+                $("#content-login").addClass("div-collapsed");
             }
         }
 
@@ -58,9 +57,8 @@
 
             // Sign in with email and pass.
             if (emailSignUp(email, password1)) {
-                // This hides the welcome screen's home-inner div, this
-                // makes for a cleaner looking sign-up
-                $(".home-inner").addClass("div-collapsed");;
+                // This makes for a cleaner looking sign-in
+                $("#content-login").addClass("div-collapsed");;
             }
         }
 
