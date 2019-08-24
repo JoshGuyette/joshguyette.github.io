@@ -202,14 +202,14 @@
                                     Logged in as <span id="current-user">{{ state.currentUser.email }}</span>. <br/>
                                     Your IP: <span id="ip-address">{{ state.location.ip }}</span> <br/>
                                     Your Location: <span id="city">{{ state.location.city }}</span>, <span id="state">{{ state.location.region.name }}</span> <br/>
-                                    Weather: <span id="weather">{{ state.location.weather.conditions[0].main }}</span> <br/>
+                                    Location: <span id="location">{{ state.geo-location }}</span>
+                                    <br/>
                                 </div>
                             </div>
                         </div>        
                     </p>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

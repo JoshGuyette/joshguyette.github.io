@@ -18,7 +18,7 @@ var config = {
     authDomain: "locksmith-pool.firebaseapp.com",
     databaseURL: "https://locksmith-pool.firebaseio.com",
     projectId: "locksmith-pool",
-    storageBucket: "",
+    storageBucket: "locksmith-pool.appspot.com",
     messagingSenderId: "185412028758",
     appId: "1:185412028758:web:13ed29099b286f0f"
   },

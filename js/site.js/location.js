@@ -1,4 +1,20 @@
 // Promises information about the client's location
+// state.location.geo
+
+
+function getGeoLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showGeoPosition);
+    } else {
+        state.set("geo-location", "Geolocation is not supported by this browser.");
+    }
+}
+
+function showGeoPosition(position) {
+    state.set("geo-location", "Latitude: " + position.coords.latitude +
+        "<br>Longitude: " + position.coords.longitude);
+}
+
 function getLocationInformation(apiKey, callback) {
     // Get the client's IP address
     $.getJSON('//api.ipify.org?format=jsonp&callback=?').then(ipData => {

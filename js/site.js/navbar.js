@@ -29,8 +29,20 @@ function getPageUrl(pagePath)
 
 // Function to navigate to a different content-page
 function pageNavigate(pageName) {
-  var id = "#href-" + pageName;
-  $(id).click();
+  if (document) {
+    var e = document.getElementById('body');
+    var $injector = angular.element(e).injector();
+    if ($injector) {
+      var $location = $injector.get('$location');
+      $location.path("/" + pageName);
+    } else {
+      console.log("Could not inject!");
+    }
+    var id = "#href-" + pageName;
+    if (id) {
+      $(id).click();
+    }
+  }
 }
 
 // Finished

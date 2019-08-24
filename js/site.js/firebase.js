@@ -14,6 +14,14 @@ function onAuthStateChanged(user) {
     state.set("idleTime", 0);
 }
 
+//var user = firebase.auth().currentUser;
+    
+//if (user) {
+  // User is signed in.
+//  firebase.auth().currentUser.reload();
+//  onAuthStateChanged(user);
+//}
+
 // Returns true if the current user is logged in
 function isLoggedIn() {
     var currentUser = firebase.auth().currentUser;
