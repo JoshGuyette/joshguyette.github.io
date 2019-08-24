@@ -5,7 +5,7 @@
 // This variable is bound to the $rootScope 
 var config = {
   // Used for the navbar title
-  appName: "LockPro",
+  appName: "Locksmith Pool",
   // Reference
   appVersion: "Beta 1",
   // Number of seconds of idle time before a user logs off
@@ -14,12 +14,13 @@ var config = {
   refreshPageOnLogout: true,
   // This is used to make the connect to firebase
   firebaseInit: {
-    apiKey: "AIzaSyDEgB2dkMchvVjdHgVtGT_HgKG9NZA_d4o",
-    authDomain: "fabspa-js.firebaseapp.com",
-    databaseURL: "https://fabspa-js.firebaseio.com",
-    projectId: "fabspa-js",
-    storageBucket: "fabspa-js.appspot.com",
-    messagingSenderId: "792011811972"
+    apiKey: "AIzaSyAskdAnagVusl8I9Lljkq4jpnem5rzjimA",
+    authDomain: "locksmith-pool.firebaseapp.com",
+    databaseURL: "https://locksmith-pool.firebaseio.com",
+    projectId: "locksmith-pool",
+    storageBucket: "",
+    messagingSenderId: "185412028758",
+    appId: "1:185412028758:web:13ed29099b286f0f"
   },
 };
 
@@ -42,9 +43,9 @@ var navbar = {
       types: ["user-page", "home", "verify-email"]
     },
     {
-      name: "Contacts",
-      path: "contacts",
-      url: "pages/contacts.html",
+      name: "Locksmiths",
+      path: "locksmiths",
+      url: "pages/locksmiths.html",
       // This page is always available
       types: ["site-page"]
     },
@@ -74,7 +75,7 @@ var navbar = {
 
 var indexPage = {
   // Used for the window title
-  titlePrefix: "LockPro - ",
+  titlePrefix: "Locksmith Pool - ",
   titleSuffix: "",
   // Additional globally scoped javascripts should be listed here
   javaScripts: [
