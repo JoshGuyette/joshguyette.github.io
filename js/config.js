@@ -74,8 +74,8 @@ var navbar = {
 
 var indexPage = {
   // Used for the window title
-  titlePrefix: "Professional Profile - ",
-  titleSuffix: " - Josh Guyette",
+  titlePrefix: "LockPro - ",
+  titleSuffix: "",
   // Additional globally scoped javascripts should be listed here
   javaScripts: [
     {
