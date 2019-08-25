@@ -22,6 +22,36 @@ var config = {
     messagingSenderId: "185412028758",
     appId: "1:185412028758:web:13ed29099b286f0f"
   },
+  firebaseUIConfig: {
+    signInSuccessUrl: '#!/home',
+    signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+        firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+    ],
+    signInFlow: 'popup',
+    credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM,
+    callbacks: {
+      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+          console.log("* signInSuccessWithAuthResult");
+          if (authResult.user) {
+            //  handleSignedInUser(authResult.user);
+            //pageNavigate("home");
+          }
+          if (authResult.additionalUserInfo) {
+              //document.getElementById('is-new-user').textContent =
+              //    authResult.additionalUserInfo.isNewUser ?
+              //    'New User' : 'Existing User';
+          }
+          // Do not redirect.
+          return false;
+      },
+      signInFailure: function(error) {
+          console.log("* signInFailure: " + error);
+      }
+    }
+  }
 };
 
 // This is the defination for navbar, controls when pages are available, and which pages are default.
@@ -43,9 +73,9 @@ var navbar = {
       types: ["user-page", "home", "verify-email"]
     },
     {
-      name: "Locksmiths",
-      path: "locksmiths",
-      url: "pages/locksmiths.html",
+      name: "Directory",
+      path: "directory",
+      url: "pages/directory.html",
       // This page is always available
       types: ["site-page"]
     },
@@ -56,13 +86,13 @@ var navbar = {
       // User settings page, "settings" can be used with "site-page" too
       types: ["user-page", "settings"]
     },
-    {
+    /*{
       name: "Login",
       path: "login",
       url: "pages/login.html",
       // This page is always available
       types: ["site-page", "authentication"]
-    },
+    }, */
     {
       name: "Logout",
       path: "logout",
