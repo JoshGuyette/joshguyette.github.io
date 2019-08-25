@@ -10,8 +10,12 @@
             ]
         };
 
-        var ui = new firebaseui.auth.AuthUI(firebase.auth());
-        ui.start("#main-content-home", uiConfig);
+        if (!firebaseui.currentInstance) {
+            firebaseui.currentInstance = new firebaseui.auth.AuthUI(firebase.auth());
+        }
+        if (!firebase.auth().currentUser) {
+            firebaseui.currentInstance.start("#main-content-home", uiConfig);
+        }
     </script>
 
     <div id="content-home" class="card bg-dark text-center content-info">
@@ -19,9 +23,8 @@
             Home Page
         </div>
         <div id="main-content-home">
-
+            Logged-In
         </div>
     </div>
-
 
 </div>
