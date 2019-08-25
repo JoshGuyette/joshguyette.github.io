@@ -30,14 +30,13 @@ var config = {
         firebase.auth.PhoneAuthProvider.PROVIDER_ID,
         firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
     ],
-    signInFlow: 'popup',
-    credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM,
+    //signInFlow: 'popup',
     callbacks: {
       signInSuccessWithAuthResult: function(authResult, redirectUrl) {
           console.log("* signInSuccessWithAuthResult");
           if (authResult.user) {
             //  handleSignedInUser(authResult.user);
-            //pageNavigate("home");
+            pageNavigate("home");
           }
           if (authResult.additionalUserInfo) {
               //document.getElementById('is-new-user').textContent =

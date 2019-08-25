@@ -5,6 +5,7 @@ function onReady() {
   //
   // Put your code that requires being placed in on-ready event in here
   //
+
   getGeoLocation();
 }
 

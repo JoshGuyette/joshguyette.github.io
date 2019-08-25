@@ -34,7 +34,7 @@ function pageNavigate(pageName) {
     var $injector = angular.element(e).injector();
     if ($injector) {
       var $location = $injector.get('$location');
-      $location.path("/" + pageName);
+      $location.path("/#!/" + pageName);
     } else {
       console.log("Could not inject!");
     }

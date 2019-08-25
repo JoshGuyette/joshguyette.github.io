@@ -1,5 +1,11 @@
 // This is just support for firebase, firebase is initialized at the beginning of main.js
 
+function initFirebaseUI() {
+    if (!firebaseui.currentInstance) {
+        firebaseui.currentInstance = new firebaseui.auth.AuthUI(firebase.auth());
+    }
+}
+
 // onAuthStateChanged event handler, handler added at the end of this script
 function onAuthStateChanged(user) {
     if (user) {

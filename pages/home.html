@@ -1,13 +1,31 @@
 <!-- welcome.html -->
 <div class="container op-none">
     <script type="text/javascript">
+        function updateHomePage() {
+            var user = firebase.auth().currentUser;
+            if (!user) {
+                if (!$("#authenticate-content-home").hasClass("div-collapsed"))
+                    $("#authenticate-content-home").addClass("div-collapsed");
+                $("#non-authenticate-content-home").removeClass("div-collapsed");
 
-        if (!firebaseui.currentInstance) {
-            firebaseui.currentInstance = new firebaseui.auth.AuthUI(firebase.auth());
+            } else {
+                if (!$("#nonauthenticate-content-home").hasClass("div-collapsed"))
+                    $("#non-authenticate-content-home").addClass("div-collapsed");
+                $("#authenticate-content-home").removeClass("div-collapsed");
+            }
         }
-        if (!firebase.auth().currentUser) {
-            firebaseui.currentInstance.start("#main-content-home", config.firebaseUIConfig);
-        }
+        (function () {
+            // Update visible div
+            updateHomePage();
+
+            // Initialize Firebase UI
+            initFirebaseUI();
+
+            // Display the firebase ui auth widget
+            if (!firebase.auth().currentUser) {
+                firebaseui.currentInstance.start("#main-content-home", config.firebaseUIConfig);
+            }
+        })();
     </script>
 
     <div id="content-home" class="card bg-dark text-center content-info">
@@ -15,7 +33,12 @@
             Home Page
         </div>
         <div id="main-content-home">
-            Logged-In
+            <div id="authenticate-content-home" class="div-collapsed">
+                Signed-In Content
+            </div>
+            <div id="non-authenticate-content-home" class="div-collapsed">
+                Signed-Out Content
+            </div>
         </div>
     </div>
 
