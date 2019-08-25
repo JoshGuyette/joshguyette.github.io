@@ -12,7 +12,7 @@
         // verified their e-mail or not.
         function refreshLayout() {
             var user = firebase.auth().currentUser;
-            if (user && user.emailVerified) {
+            if (true || user && user.emailVerified) {
                 if (!$("#verify-email").hasClass("div-collapsed"))
                     $("#verify-email").addClass("div-collapsed");
                 $("#dashboard-content").removeClass("div-collapsed");
