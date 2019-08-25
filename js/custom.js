@@ -11,7 +11,7 @@ function updateLocation(data) {
     var weather = Math.roundDecimal(state.location.weather.temp.fahrenheit, 0) + '&deg;F and ' + titleCase(state.location.weather.conditions[0].description);
     $("#weather").html(weather);
 }
-getLocationInformation(config.firebaseInit.apiKey, data => updateLocation(data));
+//getLocationInformation(config.firebaseInit.apiKey, data => updateLocation(data));
 
 // Finished
 console.log("Finished loading: custom.js ");

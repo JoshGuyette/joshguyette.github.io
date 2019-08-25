@@ -10,11 +10,13 @@ function getGeoLocation() {
     }
 }
 
+
 function showGeoPosition(position) {
     state.set("geo-location", "Latitude: " + position.coords.latitude +
         "<br>Longitude: " + position.coords.longitude);
 }
 
+/*
 function getLocationInformation(apiKey, callback) {
     // Get the client's IP address
     $.getJSON('//api.ipify.org?format=jsonp&callback=?').then(ipData => {
@@ -65,3 +67,4 @@ function getLocationInformation(apiKey, callback) {
         }).catch(e => console.error(e));
     }).catch(e => console.error(e));
 };
+*/
