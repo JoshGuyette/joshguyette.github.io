@@ -24,7 +24,6 @@ var state = {
 function isPageValid(user, types)
 {
   var isLogout = (types.indexOf("logout") > -1);
-  var isHome = (types.indexOf("home") > -1);
   var isAuthPage = (types.indexOf("authentication") > -1);
   var isSite = (types.indexOf("site-page") > -1);
   var isUser = (types.indexOf("user-page") > -1);

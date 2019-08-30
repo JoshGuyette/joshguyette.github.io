@@ -35,6 +35,7 @@ function pageNavigate(pageName) {
     if ($injector) {
       var $location = $injector.get('$location');
       $location.path("/#!/" + pageName);
+      console.log("Injecting location: " + pageName);
     } else {
       console.log("Could not inject!");
     }
@@ -43,6 +44,19 @@ function pageNavigate(pageName) {
       $(id).click();
     }
   }
+}
+
+function protectNavBar(nextPage) {
+  var user = firebase.auth().currentUser;
+  for (var page in navbar.elements) {
+    var path = navbar.elements[page].path;
+    var types = navbar.elements[page].types;
+    var isValid = isPageValid(user, types);
+    if (path == nextPage && isValid) {
+      return true;
+    }
+  }
+  return false;
 }
 
 // Finished

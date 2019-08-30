@@ -92,23 +92,14 @@ fabspaApp
         }
 
         // Remove third-party driven route changes (like those from bootstrap tabs)
+        // Note: The (nextPage == currentPage) is a fix for mobile browsers.
         if (typeof next.templateUrl == "undefined" || nextPage == currentPage) {
           event.preventDefault();
           return;
         }
 
         // Force user to stay on valid pages
-        var isPageInvalid = true;
-        for (var page in $rootScope.navbar.elements) {
-          var path = $rootScope.navbar.elements[page].path;
-          var types = navbar.elements[page].types;
-          var isValid = isPageValid(user, types);
-          if (path == nextPage && isValid) {
-            isPageInvalid = false;
-            break;
-          }
-        }
-        if (isPageInvalid) {
+        if (!protectNavBar(nextPage)) {
           //console.log("Note: Caught an invalid page");
           event.preventDefault();
         }

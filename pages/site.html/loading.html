@@ -5,10 +5,12 @@
         // is it will fire an onAuthStateChanged if logged in or not.
         firebase.auth().onAuthStateChanged(function (user) {
             // if loading root, redirect to welcome if logged-out, or dashboard if logged-in
+            console.log("Loading onAuthStateChanged: " + user)
             if (user != null)
                 pageNavigate("dashboard");
             else
                 pageNavigate("home");
+            
         });
     </script>
 

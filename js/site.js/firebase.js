@@ -8,9 +8,17 @@ function initFirebaseUI() {
 
 // onAuthStateChanged event handler, handler added at the end of this script
 function onAuthStateChanged(user) {
+    console.log("onAuthStateChanged: " + user);
     if (user) {
-        // Move from the welcome page to the dashboard page
-        pageNavigate("dashboard");
+        // Need to make sure the navbar is drawn properly
+        var e = document.getElementById('app-header');
+        var $injector = angular.element(e).injector();
+        if ($injector) {
+          var $route = $injector.get('$route');
+          $route.reload();
+        } else {
+          console.log("onAuthStateChanged: Could not find $injector!");
+        }
 
         // Start an async timer to monitor for inactivity while signed in.
         // Used for auto-logout.
@@ -61,6 +69,10 @@ function firebaseSignOut(){
 // Monitor for user inactivity
 async function pollInactivityTimeout() {
     var user = firebase.auth().currentUser;
+
+    if (!state.get("idleTime") || state.get("idleTime") <= 0)
+        return;
+
     // If user logs out break the loop
     while (user != null)
     {
@@ -77,8 +89,7 @@ async function pollInactivityTimeout() {
 // Handles sign-up's using an email address
 function emailSignUp(email, password)
 {
-    firebase
-        .auth()
+    firebase.auth()
         .createUserWithEmailAndPassword(email, password)
         .then(function () {
             sendEmailVerification("E-Mail Verification", "Please verify the e-mail we just sent you.");
@@ -99,8 +110,7 @@ function emailSignUp(email, password)
 // Handle email-based password resets
 function emailPasswordReset(email)
 {
-    firebase
-        .auth()
+    firebase.auth()
         .sendPasswordResetEmail(email)
         .then(function () {
             showDialog("Password Reset", "Email Sent!", "OK");
@@ -125,8 +135,7 @@ function emailPasswordReset(email)
 // Handle email-based sign-in
 function emailSignIn(email, password)
 {
-    firebase
-        .auth()
+    firebase.auth()
         .signInWithEmailAndPassword(email, password)
         .then(function () {
             return true;

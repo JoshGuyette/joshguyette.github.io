@@ -154,7 +154,7 @@
         //
         // Init Page
         //
-        (function () {
+        (() => {
             // Setup up the initial page layout
             refreshLayout();
 
@@ -165,12 +165,15 @@
             //pollVerification();
 
             quotes.new("#random-quote");
-
-            //getLocationInformation(config.firebaseInit.apiKey, data => updateLocation(data));
         })();
 
     </script>
 
+    <!-- Service Types
+            * Lockouts
+    
+    
+    -->
     <div class="container-fluid">
         <!-- This is the section that is displayed if the user has not verified their e-mail -->
         <div id="verify-email" class="div-collapsed">
@@ -203,9 +206,9 @@
                                     EMail: <span id="current-user-email">{{ state.currentUser.email ? state.currentUser.email : "(No E-Mail)" }}</span>. <br/>
                                     Phone: <span id="current-user-phone">{{ state.currentUser.phoneNumber ? state.currentUser.phoneNumber : "(No Phone Number)" }}</span>. <br/>
                                     IsAnonymous: <span id="current-user-anonymous">{{ state.currentUser.isAnonymous ? state.currentUser.isAnonymous : "False" }}</span>. <br/>
-                                    Your IP: <span id="ip-address">{{ state.location.ip }}</span> <br/>
-                                    Your Location: <span id="city">{{ state.location.city }}</span>, <span id="state">{{ state.location.region.name }}</span> <br/>
-                                    Location: <span id="location">{{ state.geo-location }}</span>
+                                    Your IP: <span id="ip-address">{{ state["user-ip"] }}</span> <br/>
+                                    <!-- Your Location: <span id="city">{{ state.location.city }}</span>, <span id="state">{{ state.location.region.name }}</span> <br/> -->
+                                    Location: <span id="location">{{ state["geo-location"] }}</span>
                                     <br/>
                                 </div>
                             </div>

@@ -4,17 +4,19 @@
 
 // This variable is bound to the $rootScope 
 var config = {
+  // Initial Loading
+  initialLoading: true,
   // Used for the navbar title
   appName: "Locksmith Pool",
   // Reference
   appVersion: "Beta 1",
   // Number of seconds of idle time before a user logs off
-  inactivityLogout: 300,
+  inactivityLogout: 0,
   // Refresh the site when a user logs out, cleaning out any private information save in javascript variables.
   refreshPageOnLogout: true,
   // This is used to make the connect to firebase
   firebaseInit: {
-    apiKey: "AIzaSyAskdAnagVusl8I9Lljkq4jpnem5rzjimA",
+    apiKey: "AIzaSyAYfG3mVFzVpK-3OMmH_x0qCk0xL5Lculg",
     authDomain: "locksmith-pool.firebaseapp.com",
     databaseURL: "https://locksmith-pool.firebaseio.com",
     projectId: "locksmith-pool",
@@ -25,29 +27,30 @@ var config = {
   firebaseUIConfig: {
     signInSuccessUrl: '#!/home',
     signInOptions: [
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-        firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      firebase.auth.PhoneAuthProvider.PROVIDER_ID,
     ],
     //signInFlow: 'popup',
+    credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,
+    immediateFederatedRedirect: true,
     callbacks: {
       signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-          console.log("* signInSuccessWithAuthResult");
-          if (authResult.user) {
-            //  handleSignedInUser(authResult.user);
-            pageNavigate("home");
-          }
-          if (authResult.additionalUserInfo) {
-              //document.getElementById('is-new-user').textContent =
-              //    authResult.additionalUserInfo.isNewUser ?
-              //    'New User' : 'Existing User';
-          }
-          // Do not redirect.
-          return false;
+        console.log("* signInSuccessWithAuthResult");
+        if (authResult.user) {
+          //  handleSignedInUser(authResult.user);
+          //pageNavigate("home");
+        }
+        if (authResult.additionalUserInfo) {
+            //document.getElementById('is-new-user').textContent =
+            //    authResult.additionalUserInfo.isNewUser ?
+            //    'New User' : 'Existing User';
+        }
+        // Do not redirect.
+        return false;
       },
       signInFailure: function(error) {
-          console.log("* signInFailure: " + error);
+        console.log("* signInFailure: " + error);
       }
     }
   }
@@ -62,14 +65,14 @@ var navbar = {
       path: "home",
       url: "pages/home.html",
       // This is the site's home page and this page provides authentication
-      types: ["site-page", "home"]
+      types: ["site-page"]
     },
     {
       // This is the user's home page and is also used to verify e-mail addresses
       name: "Dashboard",
       path: "dashboard",
       url: "pages/dashboard.html",
-      types: ["user-page", "home", "verify-email"]
+      types: ["user-page"]
     },
     {
       name: "Directory",
